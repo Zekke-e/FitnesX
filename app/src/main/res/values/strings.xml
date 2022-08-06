@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">FitnessApp</string>
+    <string name="Fitness">Fitness<font color="#9DCEFF" size="50">X</font></string>
+    <string name="everybody_can_train">Everybody Can Train</string>
+    <string name="get_started">Get Started</string>
+    <string name="forgot_your_password"><u>Forgot your password?</u></string>
+    <string name="don_t_have_an_account_yet_register">Don\'t have an account yet? <font color="#9DCEFF">Register</font></string>
+    <string name="already_have_an_account_login">Already have an account? <font color="#9DCEFF">Login</font></string>
+    <string name="by_continuing_you_accept_our_privacy_policy">By continuing you accept our <u>Privacy Policy</u></string>
+
+    <string-array name="genders">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+</resources>

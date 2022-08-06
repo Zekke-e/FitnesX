@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/compose-model-1656848494865.xml" value="0.165" />
+        <entry key="../../../../layout/compose-model-1656868147809.xml" value="0.11275337837837837" />
+        <entry key="../../../../layout/compose-model-1656878149416.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1656878750654.xml" value="0.16574074074074074" />
+        <entry key="../../../../layout/compose-model-1656958515364.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1656962640260.xml" value="0.59375" />
+        <entry key="../../../../layout/compose-model-1657043204635.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1657047041485.xml" value="0.19562043795620437" />
+        <entry key="../../../../layout/compose-model-1657114104120.xml" value="0.11" />
+        <entry key="../../../../layout/compose-model-1657130218334.xml" value="0.5" />
+        <entry key="../../../../layout/compose-model-1657130417616.xml" value="0.335" />
+        <entry key="../../../../layout/compose-model-1657132943816.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1657134616842.xml" value="0.5959821428571429" />
+        <entry key="../../../../layout/compose-model-1657136637410.xml" value="0.11275337837837837" />
+        <entry key="../../../../layout/compose-model-1657222573810.xml" value="0.335" />
+        <entry key="../../../../layout/compose-model-1657270463961.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1657479462705.xml" value="0.11275337837837837" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/button_color.xml" value="0.1465" />
+        <entry key="app/src/main/res/drawable/button_outline.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/circle_shape.xml" value="0.1465" />
+        <entry key="app/src/main/res/drawable/circular_progress_bar.xml" value="0.1465" />
+        <entry key="app/src/main/res/drawable/gradient_pink.xml" value="0.1225" />
+        <entry key="app/src/main/res/drawable/ic_group_10275.xml" value="0.1235" />
+        <entry key="app/src/main/res/drawable/ic_img.xml" value="0.1235" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/indicator_selected.xml" value="0.1235" />
+        <entry key="app/src/main/res/drawable/indicator_unselected.xml" value="0.1235" />
+        <entry key="app/src/main/res/drawable/news_avd_v02.xml" value="0.1015" />
+        <entry key="app/src/main/res/drawable/selected_indicator.xml" value="0.1225" />
+        <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.1235" />
+        <entry key="app/src/main/res/drawable/x_decoration.xml" value="0.1465" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1125" />
+        <entry key="app/src/main/res/layout/fragment_login_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_on_boarding_page.xml" value="0.6012897198016827" />
+        <entry key="app/src/main/res/layout/fragment_register_final.xml" value="0.23369565217391305" />
+        <entry key="app/src/main/res/layout/fragment_register_page_goal.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/fragment_register_profile.xml" value="0.3552833078101072" />
+        <entry key="app/src/main/res/layout/fragment_register_screen.xml" value="0.20459215975907358" />
+        <entry key="app/src/main/res/layout/fragment_welcome_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_view_pager.xml" value="0.30725462304409673" />
+        <entry key="app/src/main/res/layout/item_view_pager_goal.xml" value="0.253125" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.253125" />
+        <entry key="app/src/main/res/layout/shimmer_image.xml" value="0.23369565217391305" />
+        <entry key="app/src/main/res/layout/welcome_screen.xml" value="0.19610507246376813" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
