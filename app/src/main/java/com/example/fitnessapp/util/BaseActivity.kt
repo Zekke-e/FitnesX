@@ -1,10 +1,11 @@
 package com.example.fitnessapp.util
 
-import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
 import android.widget.ImageView
 import coil.api.load
 import coil.request.CachePolicy
-import com.bumptech.glide.Glide
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerDrawable
 
@@ -30,6 +31,12 @@ fun loadIntoImageView(imageResource: Int, image: ImageView) {
     }
 }
 
-fun loadImageGlide(context: Context, image: ImageView, imageResource: Int) {
-    Glide.with(context).load(imageResource).into(image)
+fun EditText.onTextChanged(onTextChanged: (String) -> Unit) {
+    this.addTextChangedListener(object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            onTextChanged.invoke(s.toString())
+        }
+        override fun afterTextChanged(editable: Editable?) = Unit
+    })
 }
