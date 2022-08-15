@@ -10,10 +10,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.fitnessapp.R
+import com.example.fitnessapp.data.repository.entities.RegisterEntity
 import com.example.fitnessapp.databinding.FragmentRegisterScreenBinding
 import com.example.fitnessapp.use_cases.RegisterFormEvent
-import com.example.fitnessapp.use_cases.register_validation.TermValidation
 import com.example.fitnessapp.util.onTextChanged
+import com.example.fitnessapp.viewmodel.RegisterViewModel
 import com.example.fitnessapp.viewmodel.WelcomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -24,6 +25,7 @@ class RegisterScreen : Fragment() {
     private var _binding: FragmentRegisterScreenBinding? = null
     private val binding get() = _binding!!
     private val viewModel: WelcomeViewModel by activityViewModels()
+    private val registerViewModel: RegisterViewModel by activityViewModels()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -39,6 +41,12 @@ class RegisterScreen : Fragment() {
                 when (event) {
                     is WelcomeViewModel.ValidationEvent.Success -> {
                         Toast.makeText(requireContext(), "asd", Toast.LENGTH_SHORT).show()
+                        registerViewModel.insertUser(
+                            RegisterEntity(
+                                userId = 1,
+                                userLogin = binding.lastName.text.toString()
+                            )
+                        )
                     }
                 }
             }
@@ -55,7 +63,7 @@ class RegisterScreen : Fragment() {
         binding.password.onTextChanged {
             viewModel.onEvent(RegisterFormEvent.PasswordChanged(it))
         }
-        binding.termAccept.setOnCheckedChangeListener{ _, isChecked ->
+        binding.termAccept.setOnCheckedChangeListener { _, isChecked ->
             viewModel.onEvent(RegisterFormEvent.TermChanged(isChecked))
         }
 
