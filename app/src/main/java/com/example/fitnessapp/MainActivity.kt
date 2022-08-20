@@ -19,9 +19,6 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen().setKeepOnScreenCondition { viewModel.isLoading.value!! }
         setContentView(R.layout.activity_main)
 
-        navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        val navController = navHostFragment.navController
 
 //        viewModel.getStart().observeOnce(this, observer = Observer {
 //            if (it != null) {

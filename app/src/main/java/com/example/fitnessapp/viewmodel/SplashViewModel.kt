@@ -7,6 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.fitnessapp.data.DataStoreRepository
 import com.example.fitnessapp.navigation.Screen
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,14 +25,36 @@ class SplashViewModel @Inject constructor(
     val startDestination: LiveData<Int>
         get() = _startDestination
 
+    private val _userLoggedState = MutableLiveData<Int>()
+    val userLoggedState: LiveData<Int>
+        get() = _userLoggedState
+
 
     init {
-        viewModelScope.launch {
-            repository.readOnBoardingState().collect { completed ->
-                when (completed) {
-                    1 -> _startDestination.value = Screen.Login.route
-                    else -> _startDestination.value = Screen.OnBoarding.route
+        viewModelScope.launch(Dispatchers.Main) {
+            try {
+                coroutineScope {
+                    listOf(
+                        launch {
+                            repository.readOnBoardingState().collect { completed ->
+                                when (completed) {
+                                    1 -> _startDestination.value = Screen.Login.route
+                                    else -> _startDestination.value = Screen.OnBoarding.route
+                                }
+                            }
+                        },
+                        launch {
+                            repository.readUserLoginState().collect { completed ->
+                                when (completed) {
+                                    1 -> _userLoggedState.value = 1
+                                    else -> _userLoggedState.value = 0
+                                }
+                            }
+                        }
+                    ).joinAll()
                 }
+            } catch (e: Throwable) {
+                println("elo")
             }
         }
         _isLoading.value = false

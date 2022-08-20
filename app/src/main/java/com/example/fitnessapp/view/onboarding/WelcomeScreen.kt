@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.fitnessapp.databinding.FragmentWelcomeScreenBinding
+import com.example.fitnessapp.view.home.HomeActivity
 import com.example.fitnessapp.viewmodel.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,15 +28,21 @@ class WelcomeScreen : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.button.setOnClickListener {
-            findNavController().popBackStack()
-            findNavController().navigate(viewModel.startDestination.value!!, null, navOptions {
-                anim {
-                    enter = com.example.fitnessapp.R.anim.slide_left
-                    exit = com.example.fitnessapp.R.anim.wait_delay
-                    popEnter = com.example.fitnessapp.R.anim.wait_delay
-                    popExit = com.example.fitnessapp.R.anim.slide_right
+            viewModel.userLoggedState.observe(viewLifecycleOwner, Observer {
+                when (it) {
+                    1 -> startActivity(HomeActivity.newIntent(requireContext()))
+                    else -> {
+                        findNavController().popBackStack()
+                        findNavController().navigate(viewModel.startDestination.value!!, null, navOptions {
+                            anim {
+                                enter = com.example.fitnessapp.R.anim.slide_left
+                                exit = com.example.fitnessapp.R.anim.wait_delay
+                                popEnter = com.example.fitnessapp.R.anim.wait_delay
+                                popExit = com.example.fitnessapp.R.anim.slide_right
+                            }
+                        })
+                    }
                 }
             })
         }

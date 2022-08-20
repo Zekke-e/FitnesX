@@ -36,7 +36,8 @@
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/x_decoration.xml" value="0.1465" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1125" />
-        <entry key="app/src/main/res/layout/fragment_login_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_home_screen.xml" value="0.22192028985507245" />
+        <entry key="app/src/main/res/layout/fragment_login_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_on_boarding_page.xml" value="0.6012897198016827" />
         <entry key="app/src/main/res/layout/fragment_register_final.xml" value="0.23369565217391305" />
         <entry key="app/src/main/res/layout/fragment_register_page_goal.xml" value="0.2520833333333333" />

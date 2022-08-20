@@ -83,8 +83,8 @@ dependencies {
     implementation 'androidx.core:core-splashscreen:1.0.0-beta01'
 
     // Room-database
-    implementation 'androidx.room:room-runtime:2.5.0-alpha02'
-    kapt 'androidx.room:room-compiler:2.5.0-alpha02'
+    implementation 'androidx.room:room-runtime:2.4.3'
+    kapt 'androidx.room:room-compiler:2.4.3'
     implementation "androidx.room:room-ktx:2.4.3"
 
     // Navigation Compose
@@ -102,4 +102,8 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.38.1"
     kapt 'androidx.hilt:hilt-compiler:1.0.0'
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+
+    testImplementation "io.mockk:mockk:1.12.5"
+    androidTestImplementation "io.mockk:mockk-android:1.12.5"
+
 }

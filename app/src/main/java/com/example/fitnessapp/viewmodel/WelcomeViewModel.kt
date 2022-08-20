@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.fitnessapp.data.DataStoreRepository
 import com.example.fitnessapp.use_cases.RegisterFormEvent
 import com.example.fitnessapp.use_cases.RegisterFormValidation
-import com.example.fitnessapp.use_cases.register_validation.*
+import com.example.fitnessapp.use_cases.register_validation.RegisterUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
@@ -19,11 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class WelcomeViewModel @Inject constructor(
     private val repository: DataStoreRepository,
-    private val emailValidation: EmailValidation,
-    private val lastNameValidation: LastNameValidation,
-    private val nameValidation: NameValidation,
-    private val passwordValidation: PasswordValidation,
-    private val termValidation: TermValidation
+    private val registerUseCases: RegisterUseCases
 
 ) : ViewModel() {
     fun saveOnBoardingState(completed: Int) {
@@ -31,6 +27,7 @@ class WelcomeViewModel @Inject constructor(
             repository.saveOnBoardingState(completed = completed)
         }
     }
+
 
     var state by mutableStateOf(RegisterFormValidation())
     private val validationEventChannel = Channel<ValidationEvent>()
@@ -45,15 +42,14 @@ class WelcomeViewModel @Inject constructor(
             is RegisterFormEvent.TermChanged -> state = state.copy(termAccept = event.term)
             is RegisterFormEvent.Submit -> submitData()
         }
-
     }
 
     private fun submitData() {
-        val emailResult = emailValidation.execute(state.email)
-        val lastNameResult = lastNameValidation.execute(state.lastName)
-        val nameResult = nameValidation.execute(state.name)
-        val passwordResult = passwordValidation.execute(state.password)
-        val termResult = termValidation.execute(state.termAccept)
+        val emailResult = registerUseCases.emailValidation.execute(state.email)
+        val lastNameResult = registerUseCases.lastNameValidation.execute(state.lastName)
+        val nameResult = registerUseCases.nameValidation.execute(state.name)
+        val passwordResult = registerUseCases.passwordValidation.execute(state.password)
+        val termResult = registerUseCases.termValidation.execute(state.termAccept)
 
         val hasError = listOf(
             emailResult,
@@ -81,5 +77,4 @@ class WelcomeViewModel @Inject constructor(
     sealed class ValidationEvent {
         object Success : ValidationEvent()
     }
-
 }

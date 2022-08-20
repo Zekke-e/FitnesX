@@ -11,10 +11,15 @@ import kotlinx.coroutines.flow.map
 
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "on_boarding_pref")
+val Context.dataStore2: DataStore<Preferences> by preferencesDataStore(name = "Login_perf")
 
 class DataStoreRepository(context: Context) {
     private object PreferencesKey {
         val onBoardingKey = intPreferencesKey(name = "on_boarding_completed")
+    }
+
+    private object LogInKey {
+        val userLoggedIn = intPreferencesKey(name = "userLoggedIn")
     }
 
     private val dataStore = context.dataStore
@@ -29,6 +34,20 @@ class DataStoreRepository(context: Context) {
             .map { preferences ->
                 val onBoardingState = preferences[PreferencesKey.onBoardingKey] ?: 0
                 onBoardingState
+            }
+    }
+
+    suspend fun saveUserLoginState(completed: Int) {
+        dataStore.edit { preferences ->
+            preferences[LogInKey.userLoggedIn] = completed
+        }
+    }
+
+    fun readUserLoginState(): Flow<Int> {
+        return dataStore.data
+            .map { preferences ->
+                val loginState = preferences[LogInKey.userLoggedIn] ?: 0
+                loginState
             }
     }
 }

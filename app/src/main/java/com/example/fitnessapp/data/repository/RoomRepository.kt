@@ -7,8 +7,7 @@ class RoomRepository @Inject constructor(private val registerDao: RegisterDao) {
 
     suspend fun insertUser(userData: RegisterEntity) = registerDao.insertUser(userData = userData)
 
-    suspend fun getUser(id: Int): String {
-
-        return registerDao.getUser(id)
+    suspend fun getUserEmail(userEmail: String, userPassword: String): List<String> {
+        return registerDao.getUserEmail(userEmail, userPassword)
     }
 }

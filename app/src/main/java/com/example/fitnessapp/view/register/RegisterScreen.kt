@@ -40,11 +40,13 @@ class RegisterScreen : Fragment() {
             viewModel.validationEvents.collect { event ->
                 when (event) {
                     is WelcomeViewModel.ValidationEvent.Success -> {
-                        Toast.makeText(requireContext(), "asd", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Successful registration", Toast.LENGTH_SHORT).show()
                         registerViewModel.insertUser(
                             RegisterEntity(
-                                userId = 1,
-                                userLogin = binding.lastName.text.toString()
+                                name = binding.name.text.toString(),
+                                lastName = binding.lastName.text.toString(),
+                                emailLogin = binding.email.text.toString(),
+                                password = binding.password.text.toString()
                             )
                         )
                     }
@@ -74,8 +76,6 @@ class RegisterScreen : Fragment() {
             binding.textInputLayout3.error = viewModel.state.emailError
             binding.textInputLayout4.error = viewModel.state.passwordError
             binding.termAccept.error = viewModel.state.termAcceptError
-
-
 //            findNavController().navigate(R.id.action_registerScreen_to_registerProfileDetails)
         }
         binding.textView8.setOnClickListener {

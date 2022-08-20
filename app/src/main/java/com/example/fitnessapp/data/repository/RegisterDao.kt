@@ -12,6 +12,6 @@ interface RegisterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(userData: RegisterEntity)
 
-    @Query("SELECT Login FROM RegisterEntity where userID =:id")
-    suspend fun getUser(id: Int): String
+    @Query("SELECT EmailLogin FROM RegisterEntity where EmailLogin LIKE :userEmail AND Password LIKE :password")
+    suspend fun getUserEmail(userEmail: String, password: String): List<String>
 }
