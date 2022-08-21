@@ -28,7 +28,6 @@ class WelcomeViewModel @Inject constructor(
         }
     }
 
-
     var state by mutableStateOf(RegisterFormValidation())
     private val validationEventChannel = Channel<ValidationEvent>()
     val validationEvents = validationEventChannel.receiveAsFlow()
@@ -40,41 +39,47 @@ class WelcomeViewModel @Inject constructor(
             is RegisterFormEvent.LastNameChanged -> state = state.copy(lastName = event.lastName)
             is RegisterFormEvent.NameChanged -> state = state.copy(name = event.name)
             is RegisterFormEvent.TermChanged -> state = state.copy(termAccept = event.term)
+            is RegisterFormEvent.EmailExists -> state = state.copy(emailExists = event.emailExist)
             is RegisterFormEvent.Submit -> submitData()
         }
     }
 
     private fun submitData() {
+
         val emailResult = registerUseCases.emailValidation.execute(state.email)
         val lastNameResult = registerUseCases.lastNameValidation.execute(state.lastName)
         val nameResult = registerUseCases.nameValidation.execute(state.name)
         val passwordResult = registerUseCases.passwordValidation.execute(state.password)
         val termResult = registerUseCases.termValidation.execute(state.termAccept)
 
+
         val hasError = listOf(
-            emailResult,
-            lastNameResult,
-            nameResult,
-            passwordResult,
-            termResult
+            emailResult, lastNameResult, nameResult, passwordResult, termResult
         ).any { !it.successful }
         state = state.copy(
             emailError = emailResult.errorMessage,
             lastNameError = lastNameResult.errorMessage,
             nameError = nameResult.errorMessage,
             passwordError = passwordResult.errorMessage,
-            termAcceptError = termResult.errorMessage
+            termAcceptError = termResult.errorMessage,
         )
+
         if (hasError) {
             return
         }
 
         viewModelScope.launch {
-            validationEventChannel.send(ValidationEvent.Success)
+            if (registerUseCases.checkIfEmailExist.execute(state.email).successful) {
+                validationEventChannel.send(ValidationEvent.Success)
+            } else
+                validationEventChannel.send(ValidationEvent.Error)
         }
+
+
     }
 
     sealed class ValidationEvent {
         object Success : ValidationEvent()
+        object Error : ValidationEvent()
     }
 }

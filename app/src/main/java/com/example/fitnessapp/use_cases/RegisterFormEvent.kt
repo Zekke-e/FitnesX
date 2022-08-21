@@ -6,6 +6,7 @@ sealed class RegisterFormEvent {
     data class NameChanged(val name: String) : RegisterFormEvent()
     data class PasswordChanged(val password: String) : RegisterFormEvent()
     data class TermChanged(val term: Boolean) : RegisterFormEvent()
+    data class EmailExists(val emailExist: String) : RegisterFormEvent()
 
     object Submit : RegisterFormEvent()
 }

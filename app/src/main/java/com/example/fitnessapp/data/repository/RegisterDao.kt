@@ -14,4 +14,10 @@ interface RegisterDao {
 
     @Query("SELECT EmailLogin FROM RegisterEntity where EmailLogin LIKE :userEmail AND Password LIKE :password")
     suspend fun getUserEmail(userEmail: String, password: String): List<String>
+
+    @Query("SELECT Password FROM RegisterEntity where Password LIKE :userPassword")
+    suspend fun getUserPassword(userPassword: String): String
+
+    @Query("SELECT EmailLogin FROM RegisterEntity where EmailLogin LIKE :userEmail")
+    suspend fun checkIfEmailExists(userEmail: String): String
 }

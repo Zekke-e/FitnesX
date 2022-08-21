@@ -50,9 +50,13 @@ class RegisterScreen : Fragment() {
                             )
                         )
                     }
+                    is WelcomeViewModel.ValidationEvent.Error -> {
+                        Toast.makeText(requireContext(), "Error registration", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
+
         binding.name.onTextChanged {
             viewModel.onEvent(RegisterFormEvent.NameChanged(it))
         }
@@ -76,7 +80,6 @@ class RegisterScreen : Fragment() {
             binding.textInputLayout3.error = viewModel.state.emailError
             binding.textInputLayout4.error = viewModel.state.passwordError
             binding.termAccept.error = viewModel.state.termAcceptError
-//            findNavController().navigate(R.id.action_registerScreen_to_registerProfileDetails)
         }
         binding.textView8.setOnClickListener {
             findNavController().navigate(R.id.action_registerScreen_to_loginScreen)

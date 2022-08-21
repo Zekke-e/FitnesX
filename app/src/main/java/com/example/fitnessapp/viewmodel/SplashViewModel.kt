@@ -54,7 +54,7 @@ class SplashViewModel @Inject constructor(
                     ).joinAll()
                 }
             } catch (e: Throwable) {
-                println("elo")
+                println("error")
             }
         }
         _isLoading.value = false

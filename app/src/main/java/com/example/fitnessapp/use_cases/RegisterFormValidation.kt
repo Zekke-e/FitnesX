@@ -10,5 +10,8 @@ data class RegisterFormValidation(
     val password: String = "",
     val passwordError: String? = null,
     val termAccept: Boolean = false,
-    val termAcceptError: String? = null
+    val termAcceptError: String? = null,
+    val emailExists: String = "",
+    val emailExistError: String? = null
+
 )

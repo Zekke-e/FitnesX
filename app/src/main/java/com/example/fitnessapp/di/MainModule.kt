@@ -27,34 +27,19 @@ object MainModule {
 
     @Provides
     @Singleton
-    fun provideRegisterUseCases() = RegisterUseCases(
+    fun provideRegisterUseCases(repository: RoomRepository) = RegisterUseCases(
         emailValidation = EmailValidation(),
         lastNameValidation = LastNameValidation(),
         nameValidation = NameValidation(),
         passwordValidation = PasswordValidation(),
-        termValidation = TermValidation()
+        termValidation = TermValidation(),
+        checkIfEmailExist = CheckIfEmailExist(repository = repository)
     )
 
     @Provides
     @Singleton
     fun provideLoginUseCases(repository: RoomRepository) = LoginUseCases(
         checkUserEmailCredentials = CheckUserEmailCredentials(repository = repository),
-        checkUserPasswordCredentials = CheckUserPasswordCredentials()
+        checkUserPasswordCredentials = CheckUserPasswordCredentials(repository = repository)
     )
-//    @Provides
-//    @Singleton
-//    fun provideEmailUseCase() = EmailValidation()
-//    @Provides
-//    @Singleton
-//    fun provideLastNameUseCase() = LastNameValidation()
-//    @Provides
-//    @Singleton
-//    fun provideNameUseCase() = NameValidation()
-//    @Provides
-//    @Singleton
-//    fun providePasswordUseCase() = PasswordValidation()
-//    @Provides
-//    @Singleton
-//    fun provideTermUseCase() = TermValidation()
-
 }
